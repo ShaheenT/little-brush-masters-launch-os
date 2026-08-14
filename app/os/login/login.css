@@ -1,0 +1,767 @@
+/* =========================================================
+   LITTLE BRUSH MASTERS
+   LBMOS LOGIN EXPERIENCE
+   ========================================================= */
+
+.lbmLoginPage {
+  min-height: 100vh;
+  min-height: 100svh;
+  position: relative;
+  overflow: hidden;
+  background: #f8f5ef;
+  color: #202634;
+}
+
+.lbmLoginBackground {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------
+   PAINT BLOBS
+   --------------------------------------------------------- */
+
+.lbmPaintBlob {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(1px);
+  opacity: .55;
+}
+
+.lbmPaintBlobOne {
+  width: 520px;
+  height: 210px;
+  left: -170px;
+  top: 12%;
+  transform: rotate(-25deg);
+  background: rgba(200,210,192,.48);
+}
+
+.lbmPaintBlobTwo {
+  width: 420px;
+  height: 180px;
+  right: -150px;
+  bottom: 12%;
+  transform: rotate(22deg);
+  background: rgba(212,175,55,.10);
+}
+
+.lbmPaintBlobThree {
+  width: 260px;
+  height: 260px;
+  right: 27%;
+  top: -150px;
+  background: rgba(30,42,68,.055);
+}
+
+/* ---------------------------------------------------------
+   BRUSH STROKE
+   --------------------------------------------------------- */
+
+.lbmBrushStroke {
+  position: absolute;
+  width: 520px;
+  height: 90px;
+  left: 25%;
+  bottom: 7%;
+  border-radius: 50%;
+  transform: rotate(-12deg);
+  border-top: 1px solid rgba(30,42,68,.08);
+  border-bottom: 1px solid rgba(30,42,68,.04);
+}
+
+/* ---------------------------------------------------------
+   SPARKS
+   --------------------------------------------------------- */
+
+.lbmSpark {
+  position: absolute;
+  color: #d4af37;
+  font-family: Georgia, serif;
+  opacity: .4;
+}
+
+.lbmSparkOne {
+  top: 17%;
+  left: 48%;
+  font-size: 28px;
+}
+
+.lbmSparkTwo {
+  right: 13%;
+  top: 27%;
+  font-size: 22px;
+}
+
+.lbmSparkThree {
+  left: 11%;
+  bottom: 23%;
+  font-size: 30px;
+}
+
+/* ---------------------------------------------------------
+   MAIN SHELL
+   --------------------------------------------------------- */
+
+.lbmLoginShell {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  grid-template-columns: minmax(420px, .9fr) minmax(480px, .72fr);
+}
+
+/* ---------------------------------------------------------
+   BRAND PANEL
+   --------------------------------------------------------- */
+
+.lbmLoginBrandPanel {
+  position: relative;
+  min-height: 100vh;
+  padding: 42px clamp(42px, 6vw, 90px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  background: #1e2a44;
+  color: #f8f5ef;
+}
+
+.lbmLoginBrandPanel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: .04;
+  pointer-events: none;
+  background-image:
+    radial-gradient(
+      rgba(255,255,255,.8) .7px,
+      transparent .7px
+    );
+  background-size: 8px 8px;
+}
+
+/* ---------------------------------------------------------
+   BRAND
+   --------------------------------------------------------- */
+
+.lbmLoginBrand {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+}
+
+.lbmLoginLogo {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,.26);
+  color: #d4af37;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+
+.lbmLoginBrandText {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.lbmLoginBrandText strong,
+.lbmLoginBrandText span {
+  font-size: 10px;
+  letter-spacing: .2em;
+}
+
+.lbmLoginBrandText strong {
+  font-weight: 700;
+}
+
+.lbmLoginBrandText span {
+  color: rgba(248,245,239,.5);
+}
+
+/* ---------------------------------------------------------
+   BRAND CONTENT
+   --------------------------------------------------------- */
+
+.lbmBrandContent {
+  position: relative;
+  z-index: 2;
+  max-width: 620px;
+  margin: auto 0;
+  padding: 80px 0;
+}
+
+.lbmBrandEyebrow {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 28px;
+  color: #d4af37;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .22em;
+}
+
+.lbmBrandContent h1 {
+  margin: 0;
+  font-size: clamp(54px, 6vw, 92px);
+  line-height: .88;
+  letter-spacing: -.07em;
+  font-weight: 400;
+}
+
+.lbmBrandContent h1 em {
+  font-family: Georgia, "Times New Roman", serif;
+  color: #d4af37;
+  font-weight: 400;
+}
+
+.lbmBrandContent h1 strong {
+  font-weight: 600;
+}
+
+.lbmGoldLine {
+  width: 92px;
+  height: 1px;
+  margin: 38px 0 24px;
+  background: #d4af37;
+}
+
+.lbmBrandContent p {
+  max-width: 420px;
+  margin: 0;
+  color: rgba(248,245,239,.58);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* ---------------------------------------------------------
+   BRAND FOOTER
+   --------------------------------------------------------- */
+
+.lbmBrandFooter {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  color: rgba(248,245,239,.35);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .18em;
+}
+
+.lbmFooterPaint {
+  color: #d4af37;
+}
+
+/* ---------------------------------------------------------
+   LOGIN PANEL
+   --------------------------------------------------------- */
+
+.lbmLoginPanel {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(248,245,239,.94);
+}
+
+.lbmLoginPanelInner {
+  width: min(100%, 520px);
+  padding: 54px clamp(34px, 6vw, 78px);
+}
+
+/* ---------------------------------------------------------
+   SECURE HEADER
+   --------------------------------------------------------- */
+
+.lbmSecureHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 70px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ddd9d0;
+}
+
+.lbmSecureStatus {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #6d7280;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .16em;
+}
+
+.lbmSecureDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #73886f;
+  box-shadow:
+    0 0 0 4px rgba(115,136,111,.12);
+}
+
+.lbmSecureCode {
+  color: #aaa59b;
+  font-size: 8px;
+  letter-spacing: .15em;
+}
+
+/* ---------------------------------------------------------
+   LOGIN HEADING
+   --------------------------------------------------------- */
+
+.lbmLoginHeading {
+  margin-bottom: 40px;
+}
+
+.lbmLoginEyebrow {
+  display: block;
+  margin-bottom: 17px;
+  color: #9b7620;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .2em;
+}
+
+.lbmLoginHeading h2 {
+  margin: 0 0 20px;
+  color: #202634;
+  font-size: clamp(48px, 5vw, 70px);
+  line-height: .9;
+  letter-spacing: -.065em;
+  font-weight: 500;
+}
+
+.lbmLoginHeading h2 em {
+  font-family: Georgia, "Times New Roman", serif;
+  color: #a47c12;
+  font-weight: 400;
+}
+
+.lbmLoginHeading p {
+  max-width: 370px;
+  margin: 0;
+  color: #777b84;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* ---------------------------------------------------------
+   FORM
+   --------------------------------------------------------- */
+
+.lbmLoginForm {
+  display: grid;
+  gap: 22px;
+}
+
+.lbmField {
+  display: grid;
+  gap: 9px;
+}
+
+.lbmField label,
+.lbmPasswordLabel label {
+  color: #343945;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.lbmPasswordLabel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.lbmForgotButton {
+  border: 0;
+  background: transparent;
+  color: #9b7620;
+  cursor: pointer;
+  font: inherit;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .05em;
+}
+
+.lbmForgotButton:hover {
+  color: #202634;
+}
+
+.lbmInputWrap {
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  border: 1px solid #d6d2ca;
+  background: rgba(255,255,255,.55);
+  transition:
+    border-color .2s ease,
+    box-shadow .2s ease,
+    background .2s ease,
+    transform .2s ease;
+}
+
+.lbmInputWrap:focus-within {
+  border-color: #b18a25;
+  background: #fff;
+  box-shadow:
+    0 0 0 4px rgba(212,175,55,.08);
+  transform: translateY(-1px);
+}
+
+.lbmInputIcon {
+  flex: 0 0 48px;
+  margin-left: 2px;
+  color: #aaa59b;
+}
+
+.lbmInputWrap input {
+  min-width: 0;
+  flex: 1;
+  height: 56px;
+  padding: 0 12px 0 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #202634;
+  font: inherit;
+  font-size: 13px;
+}
+
+.lbmInputWrap input::placeholder {
+  color: #aaa69e;
+}
+
+.lbmPasswordToggle {
+  width: 48px;
+  height: 48px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: #8e897f;
+  cursor: pointer;
+}
+
+.lbmPasswordToggle:hover {
+  color: #202634;
+}
+
+/* ---------------------------------------------------------
+   ERROR
+   --------------------------------------------------------- */
+
+.lbmLoginError {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 13px 14px;
+  border: 1px solid rgba(156,67,67,.18);
+  background: #faf0ee;
+  color: #8b4545;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.lbmLoginError span {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(139,69,69,.1);
+  font-weight: 800;
+}
+
+.lbmLoginError p {
+  margin: 1px 0 0;
+}
+
+/* ---------------------------------------------------------
+   SIGN IN BUTTON
+   --------------------------------------------------------- */
+
+.lbmSignInButton {
+  min-height: 58px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+  margin-top: 3px;
+  padding: 0 20px 0 22px;
+  border: 1px solid #d4af37;
+  background: #d4af37;
+  color: #1e2a44;
+  cursor: pointer;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  transition:
+    transform .2s ease,
+    box-shadow .2s ease,
+    background .2s ease;
+}
+
+.lbmSignInButton svg {
+  margin-left: auto;
+}
+
+.lbmSignInButton:hover {
+  background: #e0bc4c;
+  box-shadow:
+    0 14px 32px rgba(30,42,68,.14);
+  transform: translateY(-1px);
+}
+
+.lbmSignInButton:active {
+  transform: translateY(0);
+}
+
+.lbmSignInButton:disabled {
+  cursor: wait;
+  opacity: .65;
+  transform: none;
+}
+
+/* ---------------------------------------------------------
+   DEVELOPMENT
+   --------------------------------------------------------- */
+
+.lbmDevelopment {
+  margin-top: 28px;
+}
+
+.lbmDevelopmentDivider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lbmDevelopmentDivider span {
+  height: 1px;
+  flex: 1;
+  background: #ddd9d0;
+}
+
+.lbmDevelopmentDivider small {
+  color: #aaa59b;
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: .14em;
+}
+
+.lbmDevButton {
+  width: 100%;
+  min-height: 44px;
+  margin-top: 14px;
+  border: 1px solid rgba(212,175,55,.35);
+  background: rgba(212,175,55,.06);
+  color: #9b7620;
+  cursor: pointer;
+  font: inherit;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.lbmDevButton:hover {
+  background: rgba(212,175,55,.11);
+}
+
+.lbmDevButton:disabled {
+  cursor: wait;
+  opacity: .55;
+}
+
+.lbmClearSession {
+  display: block;
+  margin: 10px auto 0;
+  border: 0;
+  background: transparent;
+  color: #aaa59b;
+  cursor: pointer;
+  font: inherit;
+  font-size: 9px;
+}
+
+.lbmClearSession:hover {
+  color: #202634;
+}
+
+/* ---------------------------------------------------------
+   LOGIN FOOTER
+   --------------------------------------------------------- */
+
+.lbmLoginFooter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 42px;
+  color: #aaa59b;
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: .16em;
+}
+
+.lbmFooterLine {
+  height: 1px;
+  flex: 1;
+  background: #ddd9d0;
+}
+
+/* ---------------------------------------------------------
+   RESPONSIVE
+   --------------------------------------------------------- */
+
+@media (max-width: 900px) {
+
+  .lbmLoginShell {
+    grid-template-columns: 1fr;
+  }
+
+  .lbmLoginBrandPanel {
+    min-height: auto;
+    padding: 28px 28px 45px;
+  }
+
+  .lbmBrandContent {
+    padding: 70px 0 30px;
+  }
+
+  .lbmBrandContent h1 {
+    font-size: clamp(48px, 13vw, 76px);
+  }
+
+  .lbmBrandFooter {
+    display: none;
+  }
+
+  .lbmLoginPanel {
+    min-height: auto;
+  }
+
+  .lbmLoginPanelInner {
+    padding: 48px 28px 55px;
+  }
+
+  .lbmSecureHeader {
+    margin-bottom: 50px;
+  }
+}
+
+@media (max-width: 520px) {
+
+  .lbmLoginBrandPanel {
+    padding: 24px 22px 35px;
+  }
+
+  .lbmLoginLogo {
+    width: 42px;
+    height: 42px;
+  }
+
+  .lbmBrandContent {
+    padding: 58px 0 10px;
+  }
+
+  .lbmLoginPanelInner {
+    padding: 38px 22px 45px;
+  }
+
+  .lbmLoginHeading h2 {
+    font-size: 48px;
+  }
+
+  .lbmSecureCode {
+    display: none;
+  }
+
+  .lbmLoginFooter {
+    margin-top: 30px;
+  }
+}
+
+.lbmLoginLogo {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  outline: none;
+  background: transparent;
+  overflow: visible;
+}
+
+/* Soft premium glow behind the logo */
+.lbmLoginLogo::before {
+  content: "";
+  position: absolute;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: rgba(212, 175, 55, 0.28);
+  filter: blur(38px);
+  opacity: 0.85;
+  z-index: 0;
+}
+
+/* Logo */
+.lbmLoginLogo img {
+  position: relative;
+  z-index: 1;
+  width: 145px;
+  height: 145px;
+  object-fit: contain;
+  display: block;
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.lbmLoginBrandText {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  line-height: 0.95;
+}
+
+.lbmLoginBrandText strong {
+  font-family: "Arial Rounded MT Bold", "Trebuchet MS", sans-serif;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #a47c12;
+}
+
+.lbmLoginBrandText span {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  font-weight: 500;
+  font-style: italic;
+  letter-spacing: 0.24em;
+  color: #a47c12;
+  margin-left: 5px;
+}

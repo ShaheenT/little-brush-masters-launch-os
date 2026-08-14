@@ -1,0 +1,43 @@
+import Link from "next/link";
+import OSNav from "../../components/OSNav";
+
+export default function ProjectsPage() {
+  return (
+    <div className="lbmOsLayout">
+      <OSNav />
+
+      <main className="lbmOsMain">
+        <header className="lbmOsHeader">
+          <div>
+            <p className="lbmOsEyebrow">
+              LBMOS · DELIVERY
+            </p>
+            <h1>Projects</h1>
+            <p>
+              Track every Little Brush Masters
+              childhood project from booking to completion.
+            </p>
+          </div>
+        </header>
+
+        <section className="lbmOsCard">
+          <div className="lbmOsEmpty">
+            <div className="lbmOsEmptyIcon">✎</div>
+            <h2>No projects yet</h2>
+            <p>
+              Client projects will appear here once
+              created.
+            </p>
+
+            <Link
+              href="/os/bookings"
+              className="lbmOsButton primary"
+            >
+              View bookings
+            </Link>
+          </div>
+        </section>
+      </main>
+    </div>
+  );
+}
