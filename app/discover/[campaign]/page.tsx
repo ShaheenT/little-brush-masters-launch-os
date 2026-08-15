@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 
 const campaigns: Record<string, string> = {
   silvertree: "estate-silvertree",
+  general: "general",
 };
 
 export default async function DiscoverPage({
