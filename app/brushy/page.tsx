@@ -1,7 +1,22 @@
+"use client";
+
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import "./brushy.css";
 
-export default function BrushyPage() {
+function BrushyExperience() {
+  const searchParams = useSearchParams();
+
+  const source = searchParams.get("source") || "direct";
+
+  const whatsappMessage = encodeURIComponent(
+    `Hi Little Brush Masters, Brushy sent me! I'd like to claim a spot for my child.\n\nCampaign source: ${source}`
+  );
+
+  const whatsappUrl =
+    `https://wa.me/27637545023?text=${whatsappMessage}`;
+
   return (
     <main className="brushy-page">
       <div
@@ -92,14 +107,18 @@ export default function BrushyPage() {
             </div>
 
             <a
-              href="https://wa.me/27637545023?text=Hi%20Little%20Brush%20Masters%2C%20Brushy%20sent%20me!%20I%27d%20like%20to%20claim%20a%20spot%20for%20my%20child."
+              href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="brushy-button"
               aria-label="Claim a Little Brush Masters spot on WhatsApp"
             >
               <span>Claim a Spot</span>
-              <span className="brushy-arrow" aria-hidden="true">
+
+              <span
+                className="brushy-arrow"
+                aria-hidden="true"
+              >
                 →
               </span>
             </a>
@@ -117,5 +136,13 @@ export default function BrushyPage() {
         </footer>
       </section>
     </main>
+  );
+}
+
+export default function BrushyPage() {
+  return (
+    <Suspense fallback={null}>
+      <BrushyExperience />
+    </Suspense>
   );
 }
