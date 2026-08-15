@@ -1,0 +1,423 @@
+.brushy-page {
+  min-height: 100svh;
+  background: #f8f5ef;
+  color: #202634;
+  overflow: hidden;
+  position: relative;
+}
+
+.brushy-container {
+  width: min(1120px, calc(100% - 32px));
+  min-height: 100svh;
+  margin: 0 auto;
+  padding: 28px 0 22px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+}
+
+/* --------------------------------------------------
+   HEADER / BRAND
+-------------------------------------------------- */
+
+.brushy-header {
+  display: flex;
+  align-items: center;
+  min-height: 70px;
+}
+
+.brushy-logo-mark {
+  width: 115px;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.brushy-logo-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* --------------------------------------------------
+   MAIN CONTENT
+-------------------------------------------------- */
+
+.brushy-content {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  align-items: center;
+  gap: 60px;
+  padding: 30px 0;
+}
+
+/* --------------------------------------------------
+   BRUSHY VISUAL
+-------------------------------------------------- */
+
+.brushy-visual {
+  position: relative;
+  width: min(470px, 100%);
+  aspect-ratio: 1;
+  margin: auto;
+  display: grid;
+  place-items: center;
+}
+
+.brushy-image {
+  width: 84%;
+  height: auto;
+  object-fit: contain;
+  position: relative;
+  z-index: 3;
+  filter: drop-shadow(
+    0 25px 30px rgba(30, 42, 68, 0.15)
+  );
+  animation: brushyFloat 4s ease-in-out infinite;
+}
+
+/* Decorative orbit rings */
+
+.brushy-orbit {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(30, 42, 68, 0.1);
+  pointer-events: none;
+}
+
+.brushy-orbit-one {
+  width: 90%;
+  height: 90%;
+  animation: orbitFloat 6s ease-in-out infinite;
+}
+
+.brushy-orbit-two {
+  width: 72%;
+  height: 72%;
+  border-color: rgba(212, 175, 55, 0.3);
+  animation: orbitFloat 5s ease-in-out infinite reverse;
+}
+
+/* --------------------------------------------------
+   MESSAGE
+-------------------------------------------------- */
+
+.brushy-message {
+  max-width: 560px;
+}
+
+.brushy-eyebrow {
+  margin: 0 0 18px;
+  color: #9b7b22;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+}
+
+.brushy-message h1 {
+  margin: 0;
+  font-size: clamp(48px, 7vw, 88px);
+  line-height: 0.94;
+  letter-spacing: -0.065em;
+  font-weight: 700;
+}
+
+.brushy-message h1 span {
+  display: block;
+  color: #1e2a44;
+}
+
+.brushy-introduction {
+  margin: 24px 0 0;
+  color: #6d7280;
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+/* --------------------------------------------------
+   RELEASE MESSAGE
+-------------------------------------------------- */
+
+.brushy-release {
+  margin-top: 28px;
+  padding: 20px 22px;
+  border-radius: 20px;
+  border: 1px solid rgba(30, 42, 68, 0.08);
+  background: rgba(255, 255, 255, 0.65);
+  box-shadow: 0 15px 45px rgba(30, 42, 68, 0.06);
+}
+
+.brushy-release strong,
+.brushy-release span {
+  display: block;
+}
+
+.brushy-release strong {
+  font-size: 18px;
+  line-height: 1.3;
+  color: #1e2a44;
+}
+
+.brushy-release span {
+  margin-top: 4px;
+  color: #6d7280;
+  font-size: 14px;
+}
+
+/* --------------------------------------------------
+   DETAILS
+-------------------------------------------------- */
+
+.brushy-details {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.brushy-details div {
+  padding: 15px;
+  border-radius: 16px;
+  background: rgba(200, 210, 192, 0.35);
+}
+
+.brushy-details span {
+  display: block;
+  margin-bottom: 5px;
+  color: #6d7280;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.brushy-details strong {
+  font-size: 14px;
+}
+
+/* --------------------------------------------------
+   CTA
+-------------------------------------------------- */
+
+.brushy-button {
+  margin-top: 22px;
+  width: 100%;
+  min-height: 62px;
+  padding: 0 24px;
+  border-radius: 18px;
+  background: #1e2a44;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 800;
+  box-shadow: 0 16px 32px rgba(30, 42, 68, 0.2);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.brushy-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 20px 38px rgba(30, 42, 68, 0.25);
+}
+
+.brushy-button:active {
+  transform: translateY(0);
+}
+
+.brushy-button:focus-visible {
+  outline: 3px solid rgba(212, 175, 55, 0.6);
+  outline-offset: 4px;
+}
+
+.brushy-arrow {
+  font-size: 24px;
+  line-height: 1;
+}
+
+/* --------------------------------------------------
+   NOTE / FOOTER
+-------------------------------------------------- */
+
+.brushy-note {
+  margin: 14px 0 0;
+  text-align: center;
+  color: #8a8f99;
+  font-size: 11px;
+}
+
+.brushy-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  color: #9296a0;
+  font-size: 10px;
+  text-align: center;
+}
+
+/* --------------------------------------------------
+   BACKGROUND DECORATION
+-------------------------------------------------- */
+
+.brushy-background {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  filter: blur(70px);
+  pointer-events: none;
+}
+
+.brushy-background-one {
+  top: -160px;
+  left: -100px;
+  background: rgba(200, 210, 192, 0.55);
+}
+
+.brushy-background-two {
+  right: -150px;
+  bottom: -150px;
+  background: rgba(212, 175, 55, 0.16);
+}
+
+/* --------------------------------------------------
+   ANIMATIONS
+-------------------------------------------------- */
+
+@keyframes brushyFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+@keyframes orbitFloat {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: scale(1.04);
+    opacity: 1;
+  }
+}
+
+/* --------------------------------------------------
+   TABLET / MOBILE
+-------------------------------------------------- */
+
+@media (max-width: 760px) {
+  .brushy-container {
+    width: min(100% - 28px, 560px);
+    padding-top: 20px;
+  }
+
+  .brushy-header {
+    min-height: 64px;
+  }
+
+  .brushy-logo-mark {
+    width: 105px;
+    height: 64px;
+  }
+
+  .brushy-content {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 20px 0 30px;
+  }
+
+  .brushy-visual {
+    width: min(310px, 82vw);
+  }
+
+  .brushy-message {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .brushy-message h1 {
+    font-size: clamp(46px, 14vw, 70px);
+  }
+
+  .brushy-introduction {
+    font-size: 16px;
+  }
+
+  .brushy-details {
+    text-align: left;
+  }
+
+  .brushy-button {
+    min-height: 60px;
+  }
+
+  .brushy-footer {
+    flex-wrap: wrap;
+    padding-bottom: 6px;
+  }
+}
+
+/* --------------------------------------------------
+   SMALL PHONES
+-------------------------------------------------- */
+
+@media (max-width: 390px) {
+  .brushy-container {
+    width: min(100% - 24px, 360px);
+  }
+
+  .brushy-logo-mark {
+    width: 96px;
+    height: 58px;
+  }
+
+  .brushy-details {
+    grid-template-columns: 1fr;
+  }
+
+  .brushy-details div {
+    padding: 12px 14px;
+  }
+
+  .brushy-visual {
+    width: min(270px, 78vw);
+  }
+
+  .brushy-message h1 {
+    font-size: clamp(42px, 13vw, 58px);
+  }
+
+  .brushy-release {
+    padding: 17px 18px;
+  }
+}
+
+/* --------------------------------------------------
+   REDUCED MOTION
+-------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .brushy-image,
+  .brushy-orbit-one,
+  .brushy-orbit-two {
+    animation: none;
+  }
+
+  .brushy-button {
+    transition: none;
+  }
+}
