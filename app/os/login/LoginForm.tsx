@@ -36,6 +36,7 @@ export default function LoginForm() {
 
   const [loading, setLoading] = useState(false);
   const [devLoading, setDevLoading] = useState(false);
+  const [resetLoading, setResetLoading] = useState(false);
 
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -44,12 +45,6 @@ export default function LoginForm() {
 
   const isDevelopment =
     process.env.NODE_ENV === "development";
-
-  /*
-   * ---------------------------------------------------------
-   * DEVELOPMENT SESSION CHECK
-   * ---------------------------------------------------------
-   */
 
   useEffect(() => {
     if (!isDevelopment) return;
@@ -67,12 +62,6 @@ export default function LoginForm() {
       router.replace(next);
     }
   }, [isDevelopment, next, router]);
-
-  /*
-   * ---------------------------------------------------------
-   * SUPABASE LOGIN
-   * ---------------------------------------------------------
-   */
 
   async function handleLogin(
     event: FormEvent<HTMLFormElement>
@@ -102,10 +91,6 @@ export default function LoginForm() {
         return;
       }
 
-      /*
-       * Hard navigation ensures the new Supabase
-       * authentication cookies are available to middleware.
-       */
       window.location.assign(next);
     } catch (err) {
       console.error(err);
@@ -118,11 +103,49 @@ export default function LoginForm() {
     }
   }
 
-  /*
-   * ---------------------------------------------------------
-   * DEVELOPMENT LOGIN
-   * ---------------------------------------------------------
-   */
+  async function handleForgotPassword() {
+    const recoveryEmail = email.trim();
+
+    setError("");
+
+    if (!recoveryEmail) {
+      setError("Enter your email address first, then select Forgot password?.");
+      return;
+    }
+
+    setResetLoading(true);
+
+    try {
+      const supabase = createClient();
+      const redirectTo = `${window.location.origin}/os/reset-password`;
+
+      const { error: resetError } =
+        await supabase.auth.resetPasswordForEmail(
+          recoveryEmail,
+          { redirectTo }
+        );
+
+      if (resetError) {
+        console.error("Password reset request error:", resetError);
+        setError(
+          resetError.message ||
+            "Unable to send the password reset email. Please try again."
+        );
+        setResetLoading(false);
+        return;
+      }
+
+      router.push(
+        `/os/reset-password?sent=1&email=${encodeURIComponent(recoveryEmail)}`
+      );
+    } catch (err) {
+      console.error("Password reset request failed:", err);
+      setError(
+        "Something went wrong while requesting the password reset. Please try again."
+      );
+      setResetLoading(false);
+    }
+  }
 
   function handleDevLogin() {
     if (!isDevelopment) {
@@ -148,12 +171,6 @@ export default function LoginForm() {
     }, 100);
   }
 
-  /*
-   * ---------------------------------------------------------
-   * CLEAR DEVELOPMENT SESSION
-   * ---------------------------------------------------------
-   */
-
   function clearDevSession() {
     document.cookie = [
       `${DEV_COOKIE}=`,
@@ -167,71 +184,36 @@ export default function LoginForm() {
 
   return (
     <main className="lbmLoginPage">
-
-      {/* --------------------------------------------------
-          Decorative background
-          -------------------------------------------------- */}
-
       <div className="lbmLoginBackground">
         <div className="lbmPaintBlob lbmPaintBlobOne" />
         <div className="lbmPaintBlob lbmPaintBlobTwo" />
         <div className="lbmPaintBlob lbmPaintBlobThree" />
-
         <div className="lbmBrushStroke" />
-
-        <div className="lbmSpark lbmSparkOne">
-          ✦
-        </div>
-
-        <div className="lbmSpark lbmSparkTwo">
-          ✧
-        </div>
-
-        <div className="lbmSpark lbmSparkThree">
-          •
-        </div>
+        <div className="lbmSpark lbmSparkOne">✦</div>
+        <div className="lbmSpark lbmSparkTwo">✧</div>
+        <div className="lbmSpark lbmSparkThree">•</div>
       </div>
 
-      {/* --------------------------------------------------
-          Login shell
-          -------------------------------------------------- */}
-
       <div className="lbmLoginShell">
-
-        {/* ------------------------------------------------
-            BRAND PANEL
-            ------------------------------------------------ */}
-
         <section className="lbmLoginBrandPanel">
-
           <div className="lbmLoginBrand">
-
             <div className="lbmLoginLogo">
-  <img
-    src="/images/lbm-logonbg.png"
-    alt="Little Brush Masters"
-  />
-</div>
+              <img
+                src="/images/lbm-logonbg.png"
+                alt="Little Brush Masters"
+              />
+            </div>
 
             <div className="lbmLoginBrandText">
-  <strong>
-    LITTLE BRUSH
-  </strong>
-
-  <span>
-    MASTERS
-  </span>
-</div>
-
+              <strong>LITTLE BRUSH</strong>
+              <span>MASTERS</span>
+            </div>
           </div>
 
           <div className="lbmBrandContent">
-
             <div className="lbmBrandEyebrow">
               <Sparkles size={13} />
-              <span>
-                LITTLE BRUSH MASTERS
-              </span>
+              <span>LITTLE BRUSH MASTERS</span>
             </div>
 
             <h1>
@@ -247,99 +229,54 @@ export default function LoginForm() {
             <div className="lbmGoldLine" />
 
             <p>
-              The private command centre for
-              managing Little Brush Masters
-              experiences, families, projects
-              and creative memories.
+              The private command centre for managing Little Brush Masters
+              experiences, families, projects and creative memories.
             </p>
-
           </div>
 
           <div className="lbmBrandFooter">
-
             <div className="lbmFooterPaint">
               <Paintbrush size={14} />
             </div>
-
-            <span>
-              CREATE · PAINT · REMEMBER
-            </span>
-
+            <span>CREATE · PAINT · REMEMBER</span>
           </div>
-
         </section>
 
-        {/* ------------------------------------------------
-            LOGIN PANEL
-            ------------------------------------------------ */}
-
         <section className="lbmLoginPanel">
-
           <div className="lbmLoginPanelInner">
-
-            {/* Secure status */}
-
             <div className="lbmSecureHeader">
-
               <div className="lbmSecureStatus">
                 <span className="lbmSecureDot" />
-
-                <span>
-                  SECURE COMMAND CENTRE
-                </span>
+                <span>SECURE COMMAND CENTRE</span>
               </div>
-
-              <span className="lbmSecureCode">
-                LBMOS / 01
-              </span>
-
+              <span className="lbmSecureCode">LBMOS / 01</span>
             </div>
 
-            {/* Heading */}
-
             <div className="lbmLoginHeading">
-
-              <span className="lbmLoginEyebrow">
-                WELCOME BACK
-              </span>
-
+              <span className="lbmLoginEyebrow">WELCOME BACK</span>
               <h2>
                 Enter your
                 <br />
                 <em>creative space.</em>
               </h2>
-
               <p>
-                Sign in to continue managing
-                your Little Brush Masters
+                Sign in to continue managing your Little Brush Masters
                 experiences.
               </p>
-
             </div>
-
-            {/* Form */}
 
             <form
               onSubmit={handleLogin}
               className="lbmLoginForm"
             >
-
-              {/* Email */}
-
               <div className="lbmField">
-
-                <label htmlFor="email">
-                  Email address
-                </label>
-
+                <label htmlFor="email">Email address</label>
                 <div className="lbmInputWrap">
-
                   <Mail
                     size={17}
                     strokeWidth={1.6}
                     className="lbmInputIcon"
                   />
-
                   <input
                     id="email"
                     name="email"
@@ -347,50 +284,30 @@ export default function LoginForm() {
                     autoComplete="email"
                     placeholder="your@email.com"
                     value={email}
-                    onChange={(event) =>
-                      setEmail(event.target.value)
-                    }
+                    onChange={(event) => setEmail(event.target.value)}
                     required
-                    disabled={
-                      loading ||
-                      devLoading
-                    }
+                    disabled={loading || devLoading || resetLoading}
                   />
-
                 </div>
-
               </div>
 
-              {/* Password */}
-
               <div className="lbmField">
-
                 <div className="lbmPasswordLabel">
-
-                  <label htmlFor="password">
-                    Password
-                  </label>
+                  <label htmlFor="password">Password</label>
 
                   <button
                     type="button"
                     className="lbmForgotButton"
-                    onClick={() =>
-                      router.push(
-                        "/os/reset-password"
-                      )
-                    }
-                    disabled={
-                      loading ||
-                      devLoading
-                    }
+                    onClick={handleForgotPassword}
+                    disabled={loading || devLoading || resetLoading}
                   >
-                    Forgot password?
+                    {resetLoading
+                      ? "Sending reset link…"
+                      : "Forgot password?"}
                   </button>
-
                 </div>
 
                 <div className="lbmInputWrap">
-
                   <LockKeyhole
                     size={17}
                     strokeWidth={1.6}
@@ -400,108 +317,53 @@ export default function LoginForm() {
                   <input
                     id="password"
                     name="password"
-                    type={
-                      showPassword
-                        ? "text"
-                        : "password"
-                    }
+                    type={showPassword ? "text" : "password"}
                     autoComplete="current-password"
                     placeholder="Enter your password"
                     value={password}
-                    onChange={(event) =>
-                      setPassword(
-                        event.target.value
-                      )
-                    }
+                    onChange={(event) => setPassword(event.target.value)}
                     required
-                    disabled={
-                      loading ||
-                      devLoading
-                    }
+                    disabled={loading || devLoading || resetLoading}
                   />
 
                   <button
                     type="button"
                     className="lbmPasswordToggle"
-                    onClick={() =>
-                      setShowPassword(
-                        (current) => !current
-                      )
-                    }
-                    disabled={
-                      loading ||
-                      devLoading
-                    }
-                    aria-label={
-                      showPassword
-                        ? "Hide password"
-                        : "Show password"
-                    }
+                    onClick={() => setShowPassword((current) => !current)}
+                    disabled={loading || devLoading || resetLoading}
+                    aria-label={showPassword ? "Hide password" : "Show password"}
                   >
-                    {showPassword ? (
-                      <EyeOff size={17} />
-                    ) : (
-                      <Eye size={17} />
-                    )}
+                    {showPassword ? <EyeOff size={17} /> : <Eye size={17} />}
                   </button>
-
                 </div>
-
               </div>
 
-              {/* Error */}
-
               {error && (
-                <div
-                  className="lbmLoginError"
-                  role="alert"
-                >
+                <div className="lbmLoginError" role="alert">
                   <span>!</span>
-
-                  <p>
-                    {error}
-                  </p>
+                  <p>{error}</p>
                 </div>
               )}
-
-              {/* Sign in */}
 
               <button
                 type="submit"
                 className="lbmSignInButton"
-                disabled={
-                  loading ||
-                  devLoading
-                }
+                disabled={loading || devLoading || resetLoading}
               >
-
                 <span>
                   {loading
                     ? "Opening Command Centre…"
                     : "Enter Command Centre"}
                 </span>
-
-                {!loading && (
-                  <ArrowRight
-                    size={19}
-                    strokeWidth={1.6}
-                  />
-                )}
-
+                {!loading && <ArrowRight size={19} strokeWidth={1.6} />}
               </button>
-
             </form>
-
-            {/* Development login */}
 
             {isDevelopment && (
               <div className="lbmDevelopment">
-
                 <div className="lbmDevelopmentDivider">
                   <span />
-                  <small>
-                    DEVELOPMENT
-                  </small>
+                  <small>DEVELOPMENT</small>
                   <span />
                 </div>
 
@@ -509,10 +371,7 @@ export default function LoginForm() {
                   type="button"
                   className="lbmDevButton"
                   onClick={handleDevLogin}
-                  disabled={
-                    loading ||
-                    devLoading
-                  }
+                  disabled={loading || devLoading || resetLoading}
                 >
                   {devLoading
                     ? "Opening Command Centre…"
@@ -522,36 +381,21 @@ export default function LoginForm() {
                 <button
                   type="button"
                   className="lbmClearSession"
-                  onClick={
-                    clearDevSession
-                  }
+                  onClick={clearDevSession}
                 >
                   Clear development session
                 </button>
-
               </div>
             )}
 
-            {/* Footer */}
-
             <div className="lbmLoginFooter">
-
               <span className="lbmFooterLine" />
-
-              <span>
-                LITTLE BRUSH MASTERS™
-              </span>
-
+              <span>LITTLE BRUSH MASTERS™</span>
               <span className="lbmFooterLine" />
-
             </div>
-
           </div>
-
         </section>
-
       </div>
-
     </main>
   );
 }
