@@ -5327,3 +5327,52 @@
     grid-template-columns: 1fr;
   }
 }
+
+.lbmOsResetStatus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.lbmOsResetSpinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: lbmOsResetSpin 0.8s linear infinite;
+}
+
+.lbmOsResetSuccess {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.lbmOsResetIcon {
+  width: 42px;
+  height: 42px;
+  margin: 0 auto 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  font-size: 20px;
+}
+
+.lbmOsResetSuccess p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  opacity: 0.75;
+}
+
+@keyframes lbmOsResetSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
