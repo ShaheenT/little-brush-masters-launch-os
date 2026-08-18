@@ -1586,7 +1586,7 @@ export default function LoginForm() {
   const searchParams = useSearchParams();
 
   const [email, setEmail] = useState(
-    "littlebrushmasters@gmail.com"
+    "hello@littlebrushmasters.co.za"
   );
   const [password, setPassword] = useState("");
 

@@ -4609,8 +4609,8 @@ export default function Home() {
         WhatsApp
       </a>
 
-      <a href="mailto:littlebrushmasters@gmail.com">
-        littlebrushmasters@gmail.com
+      <a href="mailto:hello@littlebrushmasters.co.za">
+        hello@littlebrushmasters.co.za
       </a>
 
       <a

@@ -212,7 +212,7 @@ export async function POST(
 
     const notificationEmail =
       process.env.LEAD_NOTIFICATION_EMAIL ||
-      "littlebrushmasters@gmail.com";
+      "hello@littlebrushmasters.co.za";
 
     if (
       resendApiKey &&
