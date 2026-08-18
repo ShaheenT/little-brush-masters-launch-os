@@ -1,57 +1,108 @@
 import Link from "next/link";
-import OSNav from "../../components/OSNav";
+import {
+  HoverBorderButton,
+  MagneticLink,
+  MovingBorderLink,
+} from "../../components/LBMOSInteractive";
+
+const demoLeads = [
+  {
+    name: "Sarah Williams",
+    child: "Maya",
+    age: 8,
+    status: "New",
+    source: "Website",
+  },
+  {
+    name: "Nadia Petersen",
+    child: "Leo",
+    age: 7,
+    status: "Qualified",
+    source: "Instagram",
+  },
+  {
+    name: "Ayesha Daniels",
+    child: "Zara",
+    age: 10,
+    status: "New",
+    source: "WhatsApp",
+  },
+];
 
 export default function LeadsPage() {
   return (
-    <div className="lbmOsLayout">
-      <OSNav />
+    <div className="lbmAcPage">
+      <header className="lbmAcPageHeader">
+        <div>
+          <p className="lbmAcEyebrow">LBMOS · LEAD MANAGEMENT</p>
+          <h1>Lead Inbox</h1>
+          <p>
+            Every family enquiry, qualification and conversion in one
+            premium operational workspace.
+          </p>
+        </div>
 
-      <main className="lbmOsMain">
-        <header className="lbmOsHeader">
-          <div>
-            <p className="lbmOsEyebrow">LBMOS · LEAD MANAGEMENT</p>
-            <h1>Lead Inbox</h1>
-            <p>
-              Manage enquiries and move qualified
-              families into the Little Brush Masters
-              client journey.
+        <MagneticLink href="/os/leads/new">
+          + New Lead
+        </MagneticLink>
+      </header>
+
+      <div className="lbmAcToolbar">
+        <input
+          className="lbmAcSearch"
+          placeholder="Search families, children or enquiries..."
+          aria-label="Search leads"
+        />
+
+        <HoverBorderButton type="button">All</HoverBorderButton>
+        <HoverBorderButton type="button">New</HoverBorderButton>
+        <HoverBorderButton type="button">Qualified</HoverBorderButton>
+      </div>
+
+      <section className="lbmAcGrid">
+        {demoLeads.map((lead) => (
+          <article className="lbmAcCard" key={lead.name}>
+            <div className="lbmAcCardTop">
+              <div>
+                <p className="lbmAcEyebrow">FAMILY ENQUIRY</p>
+                <h3>{lead.name}</h3>
+                <div className="lbmAcMeta">
+                  {lead.child} · age {lead.age} · {lead.source}
+                </div>
+              </div>
+
+              <span
+                className={`lbmAcBadge ${
+                  lead.status === "Qualified" ? "gold" : ""
+                }`}
+              >
+                {lead.status}
+              </span>
+            </div>
+
+            <p className="lbmAcMeta">
+              Private Little Brush Masters experience enquiry.
             </p>
-          </div>
 
-          <Link
-            href="/os/leads/new"
-            className="lbmOsButton primary"
-          >
-            + New Lead
-          </Link>
-        </header>
+            <div className="lbmAcCardFooter">
+              <span className="lbmAcMeta">18 Aug 2026</span>
 
-        <section className="lbmOsCard">
-          <div className="lbmOsEmpty">
-            <InboxIcon />
-            <h2>No leads yet</h2>
-            <p>
-              New enquiries will appear here once
-              connected to your Supabase lead pipeline.
-            </p>
-
-            <Link
-              href="/os/leads/new"
-              className="lbmOsButton primary"
-            >
-              Create first lead
-            </Link>
-          </div>
-        </section>
-      </main>
-    </div>
-  );
-}
-
-function InboxIcon() {
-  return (
-    <div className="lbmOsEmptyIcon">
-      ✦
+              {lead.status === "Qualified" ? (
+                <MovingBorderLink href="/os/leads/convert">
+                  Convert
+                </MovingBorderLink>
+              ) : (
+                <Link
+                  href="/os/leads/new"
+                  className="lbmOsButton secondary"
+                >
+                  View Lead
+                </Link>
+              )}
+            </div>
+          </article>
+        ))}
+      </section>
     </div>
   );
 }

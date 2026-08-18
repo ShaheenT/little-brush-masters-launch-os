@@ -1,0 +1,54 @@
+import Link from "next/link";
+
+export default function LeadsPage() {
+  return (
+    <div className="lbmOsLayout">
+      <OSNav />
+
+      <main className="lbmOsMain">
+        <header className="lbmOsHeader">
+          <div>
+            <p className="lbmOsEyebrow">LBMOS · LEAD MANAGEMENT</p>
+            <h1>Lead Inbox</h1>
+            <p>
+              Manage enquiries and move qualified
+              families into the Little Brush Masters
+              client journey.
+            </p>
+          </div>
+
+          <Link
+            href="/os/leads/new"
+            className="lbmOsButton primary"
+          >
+            + New Lead
+          </Link>
+        </header>
+
+        <section className="lbmOsCard">
+          <div className="lbmOsEmpty">
+            <InboxIcon />
+            <h2>No leads yet</h2>
+            <p>
+              New enquiries will appear here once
+              connected to your Supabase lead pipeline.
+            </p>
+
+            <Link
+              href="/os/leads/new"
+              className="lbmOsButton primary"
+            >
+              Create first lead
+            </Link>
+          </div>
+        </section>
+  );
+}
+
+function InboxIcon() {
+  return (
+    <div className="lbmOsEmptyIcon">
+      ✦
+    </div>
+  );
+}

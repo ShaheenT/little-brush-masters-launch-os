@@ -1,7 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-
 import {
   useCallback,
   useEffect,
@@ -239,8 +237,6 @@ function getNextProjectStage(
 /* -------------------------------------------------------------------------- */
 
 export default function LbmOsPage() {
-
-  const router = useRouter();
   const [view, setView] =
     useState<View>(
       "dashboard"
@@ -699,6 +695,142 @@ export default function LbmOsPage() {
 
   return (
     <main className="lbmOs">
+      <aside className="osSidebar">
+        <div>
+          <div className="osBrand">
+            <div className="osBrandMark">
+              LB
+            </div>
+
+            <div>
+              <strong>
+                LITTLE BRUSH
+              </strong>
+
+              <span>
+                MASTERS
+              </span>
+            </div>
+          </div>
+
+          <div className="osBrandSub">
+            LBMOS · COMMAND CENTRE
+          </div>
+
+          <nav className="osNav">
+            <button
+              type="button"
+              className={
+                view ===
+                "dashboard"
+                  ? "active"
+                  : ""
+              }
+              onClick={() =>
+                changeView(
+                  "dashboard"
+                )
+              }
+            >
+              <LayoutDashboard
+                size={18}
+              />
+
+              Dashboard
+            </button>
+
+            <button
+              type="button"
+              className={
+                view === "leads"
+                  ? "active"
+                  : ""
+              }
+              onClick={() =>
+                changeView(
+                  "leads"
+                )
+              }
+            >
+              <Users size={18} />
+
+              Lead Inbox
+
+              <span>
+                {leads.length}
+              </span>
+            </button>
+
+            <button
+              type="button"
+              className={
+                view ===
+                "clients"
+                  ? "active"
+                  : ""
+              }
+              onClick={() =>
+                changeView(
+                  "clients"
+                )
+              }
+            >
+              <UserRound
+                size={18}
+              />
+
+              Clients
+
+              <span>
+                {clients.length}
+              </span>
+            </button>
+
+            <button
+              type="button"
+              className={
+                view ===
+                "projects"
+                  ? "active"
+                  : ""
+              }
+              onClick={() =>
+                changeView(
+                  "projects"
+                )
+              }
+            >
+              <FolderKanban
+                size={18}
+              />
+
+              Projects
+
+              <span>
+                {projects.length}
+              </span>
+            </button>
+          </nav>
+        </div>
+
+        <div className="osSidebarBottom">
+          <div className="osCapacity">
+            <span className="capacityDot" />
+
+            <div>
+              <strong>
+                Private bookings
+              </strong>
+
+              <small>
+                Limited monthly
+                capacity
+              </small>
+            </div>
+          </div>
+        </div>
+      </aside>
+
       <section className="osMain">
         <header className="osHeader">
           <div>
@@ -775,9 +907,6 @@ export default function LbmOsPage() {
             }
             setView={
               changeView
-            }
-            onViewAllLeads={() =>
-              router.push("/os/leads")
             }
           />
         )}
@@ -1097,7 +1226,6 @@ function Dashboard({
   outstanding,
   openLead,
   setView,
-  onViewAllLeads,
 }: {
   leads: Lead[];
   projects: Project[];
@@ -1112,8 +1240,6 @@ function Dashboard({
   setView: (
     view: View
   ) => void;
-
-  onViewAllLeads: () => void;
 }) {
   const latestLeads =
     leads
@@ -1201,7 +1327,11 @@ function Dashboard({
             <button
               type="button"
               className="panelLink"
-              onClick={onViewAllLeads}
+              onClick={() =>
+                setView(
+                  "leads"
+                )
+              }
             >
               View all
               <ArrowRight

@@ -1,0 +1,37 @@
+import Link from "next/link";
+
+export default function ClientsPage() {
+  return (
+    <>
+      <header className="lbmOsHeader">
+        <div>
+          <p className="lbmOsEyebrow">
+            LBMOS · RELATIONSHIPS
+          </p>
+          <h1>Clients</h1>
+          <p>
+            Manage Little Brush Masters families and
+            client relationships.
+          </p>
+        </div>
+      </header>
+
+      <section className="lbmOsCard">
+        <div className="lbmOsEmpty">
+          <div className="lbmOsEmptyIcon">♡</div>
+          <h2>No clients yet</h2>
+          <p>
+            Converted leads will appear here.
+          </p>
+
+          <Link
+            href="/os/leads"
+            className="lbmOsButton primary"
+          >
+            View Lead Inbox
+          </Link>
+        </div>
+      </section>
+    </>
+  );
+}

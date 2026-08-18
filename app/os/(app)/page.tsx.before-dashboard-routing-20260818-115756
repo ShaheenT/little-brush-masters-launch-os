@@ -776,9 +776,6 @@ export default function LbmOsPage() {
             setView={
               changeView
             }
-            onViewAllLeads={() =>
-              router.push("/os/leads")
-            }
           />
         )}
 
@@ -1097,7 +1094,6 @@ function Dashboard({
   outstanding,
   openLead,
   setView,
-  onViewAllLeads,
 }: {
   leads: Lead[];
   projects: Project[];
@@ -1112,8 +1108,6 @@ function Dashboard({
   setView: (
     view: View
   ) => void;
-
-  onViewAllLeads: () => void;
 }) {
   const latestLeads =
     leads
@@ -1201,7 +1195,7 @@ function Dashboard({
             <button
               type="button"
               className="panelLink"
-              onClick={onViewAllLeads}
+              onClick={() => router.push("/os/leads")}
             >
               View all
               <ArrowRight

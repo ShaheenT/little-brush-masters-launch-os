@@ -1,0 +1,45 @@
+
+export default function BookingsPage() {
+  return (
+    
+        <header className="lbmOsHeader">
+          <div>
+            <p className="lbmOsEyebrow">
+              LBMOS · PRIVATE EXPERIENCES
+            </p>
+            <h1>Private Bookings</h1>
+            <p>
+              Manage the Little Brush Masters private
+              childhood experience calendar.
+            </p>
+          </div>
+        </header>
+
+        <section className="lbmOsStats">
+          <div className="lbmOsStat">
+            <span>Upcoming</span>
+            <strong>0</strong>
+          </div>
+
+          <div className="lbmOsStat">
+            <span>This month</span>
+            <strong>0</strong>
+          </div>
+
+          <div className="lbmOsStat">
+            <span>Capacity</span>
+            <strong>Limited</strong>
+          </div>
+        </section>
+
+        <section className="lbmOsCard">
+          <div className="lbmOsEmpty">
+            <div className="lbmOsEmptyIcon">◷</div>
+            <h2>No private bookings</h2>
+            <p>
+              Confirmed experiences will appear here.
+            </p>
+          </div>
+        </section>
+  );
+}

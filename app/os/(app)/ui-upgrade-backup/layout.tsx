@@ -13,7 +13,6 @@ import {
 } from "lucide-react";
 
 import "../os.css";
-import { NoiseBackground } from "../components/LBMOSInteractive";
 
 export default function OsLayout({
   children,
@@ -162,9 +161,7 @@ export default function OsLayout({
       </aside>
 
       <main className="lbmOsMain">
-        <NoiseBackground>
-          {children}
-        </NoiseBackground>
+        {children}
       </main>
     </div>
   );
